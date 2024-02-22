@@ -1,0 +1,15 @@
+{
+  "name": "refactoring-2-javascript",
+  "version": "1.0.0",
+  "description": "refactoring-2-javascript",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "refactoring"
+  ],
+  "author": "Will Yuan",
+  "license": "BSD-2-Clause"
+}
