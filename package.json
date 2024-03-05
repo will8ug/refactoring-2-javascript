@@ -2,14 +2,18 @@
   "name": "refactoring-2-javascript",
   "version": "1.0.0",
   "description": "refactoring-2-javascript",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "keywords": [
     "refactoring"
   ],
   "author": "Will Yuan",
-  "license": "BSD-2-Clause"
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }

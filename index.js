@@ -1,11 +1,11 @@
-const plays = require('./plays.json');
-const invoices = require('./invoices.json');
+// const plays = require('./plays.json');
+// const invoices = require('./invoices.json');
 
-console.log(invoices);
-console.log(plays);
+// console.log(invoices);
+// console.log(plays);
 
-console.log('=========Statement=========');
-console.log(statement(invoices[0], plays));
+// console.log('=========Statement=========');
+// console.log(statement(invoices[0], plays));
 
 function statement(invoice, plays) {
     let totalAmount = 0;
@@ -54,3 +54,4 @@ function statement(invoice, plays) {
     return result;
 }
 
+export default statement;

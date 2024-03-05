@@ -131,9 +131,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# I'd prefer to ignore this one
-#package-lock.json
-
 # code coverage badges output
 /badges/
 

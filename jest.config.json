@@ -1,0 +1,15 @@
+{
+    "verbose": true,
+    "transform": {},
+    "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+        "dist/",
+        "node_modules/",
+        "coverage/"
+    ],
+    "coverageReporters": [
+        "lcov",
+        "text",
+        "json-summary"
+    ]
+}
