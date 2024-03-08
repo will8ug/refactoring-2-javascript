@@ -1,4 +1,4 @@
-import statement from './index';
+import { statement, htmlStatement } from './index';
 
 import plays from './plays.json';
 import invoices from './invoices.json';
@@ -134,5 +134,96 @@ describe('Tests of statement() with invalid play type', () => {
         }
 
         expect(() => statement(playUnknown, mockPlays)).toThrow(Error);
+    });
+});
+
+describe('Tests of htmlStatement() with full set of test data', () => {
+    const sttResult = htmlStatement(invoices[0], plays);
+    console.log(sttResult)
+    
+    test('verify the full output', () => {
+        expect(sttResult).toBeDefined();
+        expect(sttResult).toMatch(/Statement for BigCo/);
+        expect(sttResult).toMatch(/<td>Hamlet<\/td><td>55<\/td><td>\$650.00<\/td>/);
+        expect(sttResult).toMatch(/<td>As You Like It<\/td><td>35<\/td><td>\$580.00<\/td>/);
+        expect(sttResult).toMatch(/<td>Othello<\/td><td>40<\/td><td>\$500.00<\/td>/);
+        expect(sttResult).toMatch(/Amount owed is <em>\$1,730.00<\/em>/);
+        expect(sttResult).toMatch(/You earned <em>47<\/em> credits/);
+    });
+});
+
+describe('Tests of htmlStatement() with only one comedy play', () => {
+    test('verify comedy with 1 audience', () => {
+        const playComedy = {
+            "customer": "BigCo",
+            "performances": [
+                {
+                    "playID": "as-like",
+                    "audience": 1
+                }
+            ]
+        };
+
+        const sttResult = htmlStatement(playComedy, plays);
+        expect(sttResult).toMatch(/Statement for BigCo/);
+        expect(sttResult).toMatch(/<td>As You Like It<\/td><td>1<\/td><td>\$303.00<\/td>/);
+        expect(sttResult).toMatch(/Amount owed is <em>\$303.00<\/em>/);
+        expect(sttResult).toMatch(/You earned <em>0<\/em> credits/);
+    });
+
+    test('verify comedy with 5 audience', () => {
+        const playComedy = {
+            "customer": "BigCo",
+            "performances": [
+                {
+                    "playID": "as-like",
+                    "audience": 5
+                }
+            ]
+        };
+
+        const sttResult = htmlStatement(playComedy, plays);
+        expect(sttResult).toMatch(/Statement for BigCo/);
+        expect(sttResult).toMatch(/<td>As You Like It<\/td><td>5<\/td><td>\$315.00<\/td>/);
+        expect(sttResult).toMatch(/Amount owed is <em>\$315.00<\/em>/);
+        expect(sttResult).toMatch(/You earned <em>1<\/em> credits/);
+    });
+});
+
+describe('Tests of htmlStatement() with only one tragedy play', () => {
+    test('verify tragedy with 1 audience', () => {
+        const playTragedy = {
+            "customer": "BigCo",
+            "performances": [
+                {
+                    "playID": "othello",
+                    "audience": 1
+                }
+            ]
+        };
+
+        const sttResult = htmlStatement(playTragedy, plays);
+        expect(sttResult).toMatch(/Statement for BigCo/);
+        expect(sttResult).toMatch(/<td>Othello<\/td><td>1<\/td><td>\$400.00<\/td>/);
+        expect(sttResult).toMatch(/Amount owed is <em>\$400.00<\/em>/);
+        expect(sttResult).toMatch(/You earned <em>0<\/em> credits/);
+    });
+    
+    test('verify tragedy with 5 audience', () => {
+        const playTragedy = {
+            "customer": "BigCo",
+            "performances": [
+                {
+                    "playID": "othello",
+                    "audience": 5
+                }
+            ]
+        };
+
+        const sttResult = htmlStatement(playTragedy, plays);
+        expect(sttResult).toMatch(/Statement for BigCo/);
+        expect(sttResult).toMatch(/<td>Othello<\/td><td>5<\/td><td>\$400.00<\/td>/);
+        expect(sttResult).toMatch(/Amount owed is <em>\$400.00<\/em>/);
+        expect(sttResult).toMatch(/You earned <em>0<\/em> credits/);
     });
 });
