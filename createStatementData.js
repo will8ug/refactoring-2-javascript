@@ -39,7 +39,7 @@ export default function createStatementData(invoice, plays) {
         const calculator = new PerformanceCalculator(aPerformance, playFor(aPerformance));
         const result = Object.assign({}, aPerformance);
         result.play = calculator.play;
-        result.amount = amountFor(result);
+        result.amount = calculator.amount;
         result.volumeCredits = volumeCreditsFor(result);
         return result;
     }
@@ -53,10 +53,6 @@ export default function createStatementData(invoice, plays) {
         result += Math.max(aPerformance.audience - 30, 0);
         if ("comedy" === aPerformance.play.type) result += Math.floor(aPerformance.audience / 5);
         return result;
-    }
-
-    function amountFor(aPerformance) {
-        return new PerformanceCalculator(aPerformance, playFor(aPerformance)).amount;
     }
 
     function totalAmount(data) {
