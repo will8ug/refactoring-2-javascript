@@ -12,7 +12,7 @@
     "refactoring"
   ],
   "author": "Will Yuan",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "devDependencies": {
     "jest": "^29.7.0"
   }
